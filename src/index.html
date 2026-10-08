@@ -1,0 +1,110 @@
+<body style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+  <canvas id="c" style="border:1px solid black" width="800" height="600"></canvas>
+  <input type="color" id='color' style="margin-left:2rem; margin-bottom:400px; width:100px; height: 100px;">
+  <div style="margin-left: -100px; display: flex; flex-direction: column; gap: 20px; width: 100px;">
+    <h3 style="font-size: 0.9rem; margin-bottom:-10px; text-align:center; font-family: Arial, Helvetica, sans-serif;">Pen thickness</h3>
+    <input id="btn1" type="button" value="Thin" style="border-radius: 50px; background: #f2f2f2;">
+    <input id="btn2" type="button" value="normal" style="border-radius: 50px; background: #f3aaaa;">
+    <input id="btn3" type="button" value="Thick" style="border-radius: 50px;  background: #f2f2f2;">
+  </div>
+  <div style="margin-left: -100px; margin-bottom: -300px; display: flex; flex-direction: column; gap: 20px; width: 100px;">
+    <h3 style="font-size: 0.9rem; margin-bottom:-10px; text-align:center; font-family: Arial, Helvetica, sans-serif;">drawing style</h3>
+    <input id="btn4" type="button" value="Line" style="border-radius: 50px; background: #f3aaaa;">
+    <input id="btn5" type="button" value="Circle" style="border-radius: 50px; background: #f2f2f2;">
+  </div>
+  <div style="margin-left: -100px; margin-bottom: -550px; display: flex; flex-direction: column; gap: 20px; width: 100px;">
+    <input id="btn6" type="button" value="clear canvas" style="border-radius: 20px; background: #ec9e66; height: 3rem;">
+  </div>
+</body>
+
+<script>
+
+  function b(x,y,z){
+  x.style.background="#f3aaaa";
+  y.style.background=z.style.background="#f2f2f2"
+  }
+
+  function s(f,t=0.2){
+    let a = new AudioContext;
+    let o = a.createOscillator();
+    o.frequency.value = f;
+    o.connect(a.destination);
+    o.start();
+    o.stop(a.currentTime+t)
+  }
+
+  const c = document.getElementById("c");
+  const ctx = c.getContext("2d");
+  const color = document.getElementById("color");
+  const btn1 = document.getElementById("btn1");
+  const btn2 = document.getElementById("btn2");
+  const btn3 = document.getElementById("btn3");
+  const btn4 = document.getElementById("btn4");
+  const btn5 = document.getElementById("btn5");
+  const btn6 = document.getElementById("btn6");
+  let element = 1;
+  let co = [];
+  ctx.strokeStyle = color.value;
+  ctx.lineWidth = 3;
+
+  btn1.addEventListener("click", () => {
+    ctx.lineWidth = 1;
+    b(btn1,btn2,btn3)
+    s(300);
+  })
+
+  btn2.addEventListener("click", () => {
+    ctx.lineWidth = 3;
+    b(btn2,btn1,btn3)
+    s(300);
+  })
+
+  btn3.addEventListener("click", () => {
+    ctx.lineWidth = 5;
+    b(btn3,btn1,btn2)
+    s(300);
+  })
+
+  btn4.addEventListener("click", () => {
+    element = 1;
+    btn4.style.background = "#f3aaaa";
+    btn5.style.background = "#f2f2f2";
+    s(500);
+  })
+
+  btn5.addEventListener("click", () => {
+    element = 0;
+    btn5.style.background = "#f3aaaa";
+    btn4.style.background = "#f2f2f2";
+    s(500);
+  })
+
+  btn6.addEventListener("click", () => {
+    ctx.clearRect(0, 0, 800, 600);
+    s(800,0.4);
+  })
+
+  color.addEventListener("input", () => {
+    ctx.strokeStyle = color.value;
+    s(600,0.3);
+  })
+
+  c.addEventListener("mousedown",(e) => {
+    ctx.beginPath();
+    if(element){
+      ctx.moveTo(e.offsetX, e.offsetY);
+    }
+    else{
+      co = [e.offsetX, e.offsetY]
+    }
+});
+  c.addEventListener("mouseup", (e) => {
+    if(element){ctx.lineTo(e.offsetX, e.offsetY)}
+    else{
+      ctx.arc(co[0], co[1], Math.sqrt(Math.pow(e.offsetX-co[0] , 2)+Math.pow(e.offsetY-co[1] , 2)), 0, 2 * Math.PI);
+    }
+    ctx.stroke();
+});
+
+  
+</script>
