@@ -1,19 +1,26 @@
-<body style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-  <canvas id="c" style="border:1px solid black" width="800" height="600"></canvas>
-  <input type="color" id='color' style="margin-left:2rem; margin-bottom:400px; width:100px; height: 100px;">
-  <div style="margin-left: -100px; display: flex; flex-direction: column; gap: 20px; width: 100px;">
-    <h3 style="font-size: 0.9rem; margin-bottom:-10px; text-align:center; font-family: Arial, Helvetica, sans-serif;">Pen thickness</h3>
-    <input id="btn1" type="button" value="Thin" style="border-radius: 50px; background: #f2f2f2;">
-    <input id="btn2" type="button" value="normal" style="border-radius: 50px; background: #f3aaaa;">
-    <input id="btn3" type="button" value="Thick" style="border-radius: 50px;  background: #f2f2f2;">
-  </div>
-  <div style="margin-left: -100px; margin-bottom: -300px; display: flex; flex-direction: column; gap: 20px; width: 100px;">
-    <h3 style="font-size: 0.9rem; margin-bottom:-10px; text-align:center; font-family: Arial, Helvetica, sans-serif;">drawing style</h3>
-    <input id="btn4" type="button" value="Line" style="border-radius: 50px; background: #f3aaaa;">
-    <input id="btn5" type="button" value="Circle" style="border-radius: 50px; background: #f2f2f2;">
-  </div>
-  <div style="margin-left: -100px; margin-bottom: -550px; display: flex; flex-direction: column; gap: 20px; width: 100px;">
-    <input id="btn6" type="button" value="clear canvas" style="border-radius: 20px; background: #ec9e66; height: 3rem;">
+<body style="display:flex;justify-content:center;align-items:center;height:100vh;background-color:white;gap:20px">
+
+  <canvas id="c" style="border:1px solid black; background-color:white;" width="800" height="600"></canvas>
+
+  <div style="display:flex;flex-direction:column;align-items:center;gap:20px;width:100px">
+    <input type="color" id='color' style="width:100px;height:100px;">
+
+    <div style="display:flex;flex-direction:column;gap:20px;width:100px;">
+      <h3 style="font-size:0.9rem;margin-bottom:-10px;text-align:center;font-family:Arial,Helvetica,sans-serif;">Pen thickness</h3>
+      <input id="btn1" type="button" value="Thin" style="border-radius:50px;background:#f2f2f2;">
+      <input id="btn2" type="button" value="normal" style="border-radius:50px;background:#f3aaaa;">
+      <input id="btn3" type="button" value="Thick" style="border-radius:50px;background:#f2f2f2;">
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px;width:100px;">
+      <h3 style="font-size:0.9rem;margin-bottom:-10px;text-align:center;font-family:Arial,Helvetica,sans-serif;">drawing style</h3>
+      <input id="btn4" type="button" value="Line" style="border-radius:50px;background:#f3aaaa;">
+      <input id="btn5" type="button" value="Circle" style="border-radius:50px;background:#f2f2f2;">
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px;width:100px;">
+      <input id="btn6" type="button" value="clear canvas" style="border-radius:20px;background:#ec9e66;height:3rem;">
+    </div>
   </div>
 </body>
 
